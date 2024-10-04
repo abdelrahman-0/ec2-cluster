@@ -6,6 +6,7 @@ module "ec2_instance" {
   subnet_id              = aws_subnet.public_subnet.id
   vpc_security_group_ids = [aws_security_group.security_group.id]
   availability_zone      = var.availability_zone
+  tenancy                = "dedicated"
 
   # IPs 10.0.0.0 - 10.0.0.3 are reserved
   private_ip                  = "10.0.0.${count.index + 4}"
@@ -19,7 +20,7 @@ module "ec2_instance" {
   spot_type  = "persistent"
   key_name   = var.ssh_key
   ami        = "ami-07652eda1fbad7432" # "ami-09a1c459d70c72b96"
-  user_data  = local.instance_user_data
+  user_data  = "${local.instance_user_data}echo \"NODE_ID=${count.index}\" >> /etc/environment"
 
 
   tags = {
