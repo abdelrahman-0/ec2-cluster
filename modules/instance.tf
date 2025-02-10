@@ -14,7 +14,7 @@ module "ec2_instance" {
   name                        = "grasshopper-db-cluster-node_${count.index}"
   create_spot_instance        = var.spot_instance
   instance_type               = var.instance_type
-  placement_group             = var.use_placement_group ? aws_placement_group.cluster_pg.id : null
+  placement_group             = count.index == var.num_nodes - 1 ? null : aws_placement_group.cluster_pg.id
 
   spot_price = var.max_price
   spot_type  = "persistent"
@@ -24,7 +24,7 @@ module "ec2_instance" {
 
 
   tags = {
-    Name = "Node ${count.index} (Grasshopper DB)"
+    Name = count.index == var.num_nodes - 1 ? "Coordinator" : "Worker ${count.index} (Grasshopper DB)"
   }
 }
 
