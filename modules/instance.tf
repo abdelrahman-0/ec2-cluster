@@ -6,7 +6,7 @@ module "ec2_instance" {
   subnet_id              = aws_subnet.public_subnet.id
   vpc_security_group_ids = [aws_security_group.security_group.id]
   availability_zone      = var.availability_zone
-  tenancy                = "dedicated"
+  tenancy                = "default"
 
   # IPs 10.0.0.0 - 10.0.0.3 are reserved
   private_ip                  = "10.0.0.${count.index + 4}"
