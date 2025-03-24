@@ -1,3 +1,3 @@
 locals {
-  instance_user_data = file("${path.module}/../../grasshopper-db/install_dependencies.sh")
+  instance_user_data = ""
 }
