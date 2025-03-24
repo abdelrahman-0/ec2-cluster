@@ -20,7 +20,7 @@ module "ec2_instance" {
   spot_type  = "persistent"
   key_name   = var.ssh_key
   ami        = "ami-07652eda1fbad7432" # "ami-09a1c459d70c72b96"
-  user_data  = "${local.instance_user_data}echo \"NODE_ID=${count.index}\" >> /etc/environment"
+  user_data  = "${local.instance_user_data}"
 
 
   tags = {
