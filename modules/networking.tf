@@ -1,7 +1,7 @@
 resource "aws_vpc" "main_vpc" {
   cidr_block = "10.0.0.0/16"
   tags = {
-    Name = "VPC (Grasshopper DB)"
+    Name = "VPC"
   }
 }
 
@@ -10,14 +10,14 @@ resource "aws_subnet" "public_subnet" {
   availability_zone = var.availability_zone
   cidr_block        = "10.0.0.0/24"
   tags = {
-    Name = "Subnet (Grasshopper DB)"
+    Name = "Subnet"
   }
 }
 
 resource "aws_internet_gateway" "internet_gateway" {
   vpc_id = aws_vpc.main_vpc.id
   tags = {
-    Name = "Internet Gateway (Grasshopper DB)"
+    Name = "Internet Gateway"
   }
 }
 
@@ -35,7 +35,7 @@ resource "aws_route_table" "route_table" {
   }
 
   tags = {
-    Name = "Route table (Grasshopper DB)"
+    Name = "Route table"
   }
 }
 
@@ -49,7 +49,7 @@ resource "aws_security_group" "security_group" {
   vpc_id      = aws_vpc.main_vpc.id
 
   tags = {
-    Name = "Security Group (Grasshopper DB)"
+    Name = "Security Group"
   }
 }
 
